@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<!--声明文档兼容模式，表示使用IE浏览器的最新模式-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!--设置视口的宽度(值为设备的理想宽度)，页面初始缩放值<理想宽度/可见宽度>-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随		其后！ -->
+		<title>放行条申请</title>
+
+		<!-- 引入Bootstrap核心样式文件 -->
+		<!--<link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+		<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.0/weui.min.css">
+		<link rel="stylesheet" href="../assets/css/style-1.css" />
+		<!-- 引入jQuery核心js文件 -->
+		<script src="../assets/js/jquery.js"></script>
+		<!-- 引入BootStrap核心js文件 -->
+		<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+		<head>
+
+			<header class="jq22-navBar jq22-navBar-fixed b-line">
+				<a href="../../static/userhome.html" class="jq22-navBar-item">
+					<i class="icon icon-return"></i>
+				</a>
+				<div class="jq22-center">
+					<label for="" class="weui-label">放行条申请</label>
+				</div>
+			</header>
+			<div class="page">
+				<div class="weui-form">
+
+					<div class="weui-form__control-area">
+						<div class="weui-cells__group weui-cells__group_form">
+							<div class="weui-cells weui-cells_form">
+								
+
+								<!--<div class="weui-cell">
+									<div class="weui-cell__hd"><label class="weui-label">收费标准</label></div>
+									<div class="weui-cell__bd">
+										<input id="js_input" class="weui-input" placeholder="填写" />
+									</div>
+								</div>-->
+								<div class="weui-cell">
+									<div class="weui-cell__hd"><label class="weui-label">申请数量</label></div>
+									<div class="weui-cell__bd">
+										<input id="js_input" class="weui-input" placeholder="数量" type="number" pattern="[0-9]*" />
+									</div>
+								</div>
+								
+								
+								
+								<div class="weui-cell weui-cell_select weui-cell_select-after">
+									<div class="weui-cell__hd">
+										<label for="" class="weui-label">放行条时长</label>
+									</div>
+									<div class="weui-cell__bd">
+										<select class="weui-select" name="select2">
+                       							<option value="1">2小时</option>
+                        						<option value="2">3小时</option>
+                        						<option value="3">4小时</option>
+                   							 </select>
+									</div>
+								</div>
+								
+								<div class="weui-cell">
+									<div class="weui-cell__hd"><label class="weui-label">使用日期</label></div>
+									<div class="weui-cell__bd">
+										<input id="" class="weui-input"  type="date" />
+									</div>
+								</div>
+								
+								
+								
+								<div class="weui-cell">
+									<div class="weui-cell__hd"><label class="weui-label">放行条描述</label></div>
+									<div class="weui-cell__bd">
+										<span>在放行条时限内停车免费</span>
+										<!--<input id="js_input" class="weui-input" placeholder="" readonly/>-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="weui-form__opr-area">
+						<a class="weui-btn weui-btn_primary weui-btn_disabled" href="javascript:" id="showTooltips">确定</a>
+					</div>
+
+				</div>
+				<div id="js_toast" style="display: none;">
+					<div class="weui-mask_transparent"></div>
+					<div class="weui-toast">
+						<i class="weui-icon-success-no-circle weui-icon_toast"></i>
+						<p class="weui-toast__content">已完成</p>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				$(function() {
+					var $toast = $('#js_toast');
+					var $input = $('#js_input');
+					$input.on('input', function() {
+						if ($input.val()) {
+							$('#showTooltips').removeClass('weui-btn_disabled');
+						} else {
+							$('#showTooltips').addClass('weui-btn_disabled');
+						}
+					});
+					$('#showTooltips').on('click', function() {
+						if ($(this).hasClass('weui-btn_disabled')) return;
+						// toptips的fixed, 如果有`animation`, `position: fixed`不生效
+						$('.page.cell').removeClass('slideIn');
+						$toast.fadeIn(100);
+						setTimeout(function() {
+							$toast.fadeOut(100);
+						}, 2000);
+					});
+				});
+			</script>
+
+			</body>
+
+</html>

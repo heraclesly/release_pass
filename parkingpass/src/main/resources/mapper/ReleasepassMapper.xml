@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.parkingpass.mapper.ReleasePassMapper">
+    <select id="getAllReleasepassByUserId" parameterType="User" resultType="Releasepass">
+       SELECT r.reid,rt.`release_time` AS rid,r.eleasepase_coding,r.employtime,r.status,r.uid
+      FROM releasepass r,release_type rt WHERE r.`rid`=rt.`rid` AND r.`uid`=#{uid}  ORDER BY  r.`employtime` DESC
+    </select>
+    <update id="updateReleasepass" parameterType="Integer">
+        UPDATE releasepass r set r.status=1 where r.reid=#{reid}
+    </update>
+    <update id="updateReleasepassStatus" parameterType="Integer">
+        UPDATE  releasepass r SET `status` =2 WHERE r.employtime<![CDATA[<]]> CURRENT_DATE AND r.`status`=0 AND r.`uid`=#{rid}
+    </update>
+
+</mapper>

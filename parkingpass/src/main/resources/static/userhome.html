@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>WECHAT_EMPTY_TITLE</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="robots" content="noarchive">
+		<!-- Bootstrap 3.3.6 -->
+		<link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!--<link rel=stylesheet href=https://res.wx.qq.com/open/libs/weui/1.1.0/weui.min.css>-->
+		<link rel="stylesheet" href="../assets/css/style.css?t=20180505">
+		<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.0/weui.min.css">
+		<link rel="stylesheet" href="../assets/plugins/iCheck/skins/all.css">
+
+		<!-- Font Awesome -->
+		<link href="../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="../assets/plugins/refresher/css/pullToRefresh.css">
+		<script src="../assets/plugins/refresher/js/iscroll.js"></script>
+		<script src="../assets/js/zepto.min.js"></script>
+   		 <script src="../assets/js/zepto.weui.js"></script>
+		<style id="__WXWORK_INNER_SCROLLBAR_CSS">
+			::-webkit-scrollbar {
+				width: 12px !important;
+				height: 12px !important;
+			}
+			
+			::-webkit-scrollbar-track:vertical {}
+			
+			::-webkit-scrollbar-thumb:vertical {
+				background-color: rgba(136, 141, 152, 0.5) !important;
+				border-radius: 10px !important;
+				background-clip: content-box !important;
+				border: 2px solid transparent !important;
+			}
+			
+			::-webkit-scrollbar-track:horizontal {}
+			
+			::-webkit-scrollbar-thumb:horizontal {
+				background-color: rgba(136, 141, 152, 0.5) !important;
+				border-radius: 10px !important;
+				background-clip: content-box !important;
+				border: 2px solid transparent !important;
+			}
+			
+			::-webkit-resizer {
+				display: none !important;
+			}
+		</style>
+		<script src="../assets/plugins/refresher/js/pullToRefresh.js"></script>
+
+		<link rel="stylesheet" href="https://wx.ssintell.com../assets/plugins/layer/skin/default/layer.css?v=3.0.11110" id="layuicss-skinlayercss">
+	</head>
+
+	<body>
+		<input type="hidden" id="contextPath" value="/jzy">
+		<nav class="navbar" role="navigation">
+			<a class="nav-user-pic" href="user">
+				<img class="img-responsive img-circle head-pic" src="http://thirdwx.qlogo.cn/mmopen/vi_32/x2JchrN6vPYemPLwOaIRFa4pApX6OMwQQbYjfXz9HDtX5G8hWdZbCplntUuPnrcFuTVLV24EFZbEDLgV0LaiamQ/132">
+			</a>
+			<a href="user">
+				<label class="nav-user-nickname-uniqueId">阳光</label>
+			</a>
+
+			<!--<button class="add">在线园区:1</button>-->
+			<!--<label class="amount">￥0.00</label>-->
+		</nav>
+
+		<div class="index-search-bar">
+			<input type="text" class="index-search-input" placeholder="使用名称进行搜索" id="keyword">
+			<a class="index-search-btn"></a>
+		</div>
+
+		<div class="container-fluid my-locker" id="wrapper" style="overflow: hidden;">
+
+			<div class="scroller" style="transition-property: transform; transform-origin: 0px 0px 0px; transition-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1); transform: translate(0px, -40px) scale(1) translateZ(0px); transition-duration: 400ms;">
+				<div class="pullDown">
+					<div class="pullDownIcon"></div>
+					<div class="pullDownLabel"></div>
+				</div>
+				<ul class="table">
+
+					<li class="item">
+
+						<div class="locker-info">
+
+							<img class="locker-pic" src="https://ms.ssintell.com//upload_file/20171118115631-1177236461.jpg" onclick="bigPic(this)">
+
+							<a class="locker-more" href="javascript:actionSheet('65','1019617','23.11674','114.41847','惠州佳兆业广场No. 399926','惠州市江北惠州大道9号')"></a>
+
+							<div class="locker-name">
+
+								卓杰科技有限公司
+
+							</div>
+							<div class="locker-address">
+
+
+							</div>
+
+						</div>
+
+						<div class="index-box-type-div">
+							<a class="locker-toggle locker-toggle-down"></a>
+							<div style="display: block" class="box-type  ">
+
+								<!---------放行条begin------------->
+								<div style="height: 1px;background-color: #F2F2F2"></div>
+								<div class="index-item">
+									<p class="index-box-type">放行条&nbsp;&nbsp;<span class="index-box-ky0">未开通权限</span>
+									</p>
+									<p class="index-box-fee">申请放行条</p>
+
+									<button type="button" class="btn btn-primary index-rent-btn" onclick="javascript:rent()">
+                                                申请
+                                            </button>
+
+								</div>
+								<!---------放行条 end------------->
+								
+
+								<!---------登记系统begin------------->
+								<div style="height: 1px;background-color: #F2F2F2"></div>
+								<div class="index-item">
+									<p class="index-box-type">车辆登记&nbsp;&nbsp;<span class="index-box-ky0"></span>
+									</p>
+									<p class="index-box-fee">车辆登记使用放行条</p>
+
+									<button type="button" class="btn btn-primary index-rent-btn" onclick="javascript:rent1()">
+                                                使用
+                                            </button>
+
+								</div>
+								<!---------登记系统 end------------->
+
+								<!---------放行条权限申请begin------------->
+								<div style="height: 1px;background-color: #F2F2F2"></div>
+								<!--<div class="index-item">
+									<p class="index-box-type">开通放行条&nbsp;&nbsp;<span class="index-box-ky0">开通放行条</span>
+									</p>
+									<p class="index-box-fee">开通放行条权限</p>
+
+									<button type="button" class="btn btn-primary index-rent-btn" id ="sd1">
+                                                申请
+                                            </button>
+
+								</div>-->
+								<!---------放行条权限申请 end------------->
+								<!---------放行条begin------------->
+								<div style="height: 1px;background-color: #F2F2F2"></div>
+								<div class="index-item">
+									<p class="index-box-type">申请记录&nbsp;&nbsp;<span class="index-box-ky0"></span>
+									</p>
+									<p class="index-box-fee">放行条申请记录</p>
+
+									<button type="button" class="btn btn-primary index-rent-btn" onclick="javascript:rent3()">
+                                                查看
+                                            </button>
+
+								</div>
+								<!---------放行条 end------------->
+							</div>
+
+						</div>
+					</li>
+
+					<li style="height: 115px;"></li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="footer-bar">
+			<p style="text-align: center;margin: 5px auto">
+				<img src="../assets/img/language.png" style="width: 20px;"> <a href="#" onclick="actionSheet_language()"> 简体中文
+        <img src="../assets/img/arrow_down.png" style="width: 20px;"></a>
+			</p>
+		</div>
+
+		<input type="hidden" id="latitude" value="0">
+		<input type="hidden" id="longitude" value="0">
+
+		<!-- jQuery 2.2.3 -->
+		-
+		<script src="../assets/js/jquery.js"></script>
+		<!-- Bootstrap 3.3.6 -->
+		<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/plugins/layer/layer.js"></script>
+		<script src="../assets/js/index.js?t=201801101158"></script>
+		<script type="text/javascript" src="../assets/js/jweixin-1.2.0.js"></script>
+		<script type="text/javascript" src="../assets/js/weui.min.js"></script>
+		<script src="../assets/plugins/iCheck/icheck.min.js"></script>
+		<script type="text/javascript">
+			//解决在ios中标签没有点击效果的问题
+			document.body.addEventListener('touchstart', function() {});
+			$('.add').click(function() {
+				//window.location.replace("locker/list");
+				window.location.assign("locker/list")
+			})
+			$('.amount').click(function() {
+				window.location.assign("recharge?uniqueId=" + 73444139)
+			})
+			$('.index-search-btn').click(function() {
+				var keyword = $('#keyword').val();
+				if (null == keyword || keyword.length == 0) {
+					layer.msg("请输入搜索条件");
+					return;
+				}
+				$('#keyword').val("");
+				window.location.assign("locker/list?keyword=" + keyword)
+			})
+			$(function() {
+				$.ajax({
+					url: "js_sdk_config",
+					data: {
+						url: window.location.href
+					},
+					type: "POST",
+					async: true,
+					dataType: "json",
+					success: function(data) {
+						if (data.code == 0) {
+							config(data.data);
+						}
+					}
+				});
+				$('input').iCheck({
+					checkboxClass: 'icheckbox_flat-green',
+					radioClass: 'iradio_flat-green'
+				});
+				$('.rent-standard').click(function() {
+					$(this).find("input").iCheck('check');
+				});
+				$("#scoreCheckBox").on('ifChecked', function(event) {
+					$("#useScore").val(1);
+				});
+				$("#scoreCheckBox").on('ifUnchecked', function(event) {
+					$("#useScore").val(0);
+				});
+				$(document).on("click", "#sd1", function() {
+                $.alert("弹出对话框就是好","标题",function(){
+                    return alert('回调');
+                });
+            });
+			})
+
+			function config(paras) {
+				wx.config({
+					debug: false,
+					appId: paras.appId,
+					timestamp: paras.timestamp,
+					nonceStr: paras.nonceStr,
+					signature: paras.signature,
+					jsApiList: ['getLocation', 'openLocation']
+				});
+			}
+			wx.ready(function() {
+				// alert('config信息验证成功');
+				getLocation();
+			});
+			wx.error(function(res) {
+				// alert('config信息验证失败:' + res);
+			});
+			
+			
+			function rent() {
+				//window.location.href = "../release-pass.html";
+                $.ajax({
+                    type:"post",
+                    url:"http://localhost/gain-releasetype",
+                    async:true,
+                    dataType: "json",
+                    contentType:'application/json',
+                    success:function(data){
+                        console.log(data);
+                       var obj =eval(data);
+                       for(var i=0;i<obj.length;i++){
+                           console.log(obj[i].rid);
+					   }
+                    }
+                });
+			}
+
+			function rent1() {
+				window.location.href = "../release-passt.html";
+			}
+
+				
+			function rent3() {
+				window.location.href = "../examine.html";
+			}
+
+			function bigPic(img) {
+				var gallery = weui.gallery(img.src, {
+					className: 'custom-classname',
+					onDelete: function() {
+						gallery.hide(function() {});
+					}
+				});
+			}
+
+			function updateLocation(longitude, latitude) {
+				$.ajax({
+					url: "update_location",
+					data: {
+						longitude: longitude,
+						latitude: latitude
+					},
+					type: "POST",
+					async: true,
+					dataType: "json",
+					success: function(data) {
+						if (data.code == 0 && data.data == 1) {
+							history.go(0);
+						}
+					}
+				});
+			}
+			$('.locker-toggle').click(function() {
+				$(this).next().toggle();
+				if ($(this).next().css("display") == 'none') { /* your code here*/
+					$(this).removeClass("locker-toggle-down");
+					$(this).addClass("locker-toggle-up");
+				} else {
+					$(this).removeClass("locker-toggle-up");
+					$(this).addClass("locker-toggle-down"); /* alternate logic */
+				}
+			})
+		</script>
+
+		<script>
+			refresher.init({
+				id: "wrapper", //<------------------------------------------------------------------------------------┐
+				pullDownAction: Refresh,
+				pullUpAction: Load
+			});
+
+			function Refresh() {
+				var t = setTimeout(function() {
+					history.go(0)
+				}, 500)
+			}
+
+			function Load() {
+				history.go(0);
+			}
+		</script>
+
+		<script>
+			function actionSheet_language() {
+				weui.actionSheet([{
+					label: '简体中文',
+					onClick: function() {
+						language('zh-CN');
+					}
+				}, {
+					label: 'English',
+					onClick: function() {
+						language('en-Us');
+					}
+				}, {
+					label: '한국어',
+					onClick: function() {
+						language('ko-KR');
+					}
+				}, {
+					label: '日本語',
+					onClick: function() {
+						language('ja-JP');
+					}
+				}], [{
+					label: '取消',
+					onClick: function() {
+						console.log('取消');
+					}
+				}], {
+					className: 'custom-classname'
+				});
+			}
+
+			function language(lang) {
+				$.ajax({
+					url: "language",
+					data: {
+						lang: lang
+					},
+					type: "GET",
+					async: false,
+					dataType: "json",
+					success: function(data) {
+						// window.location.replace("/jzy");
+						window.location.reload(true);
+					}
+				});
+			}
+			//点击弹出浮层
+			function showLoading(msg) {
+				//清除之前的样式
+				$("#fullScreen,#floatLayer").remove();
+				$("body").append(
+					//占据整个屏幕Div
+					"<div id='fullScreen'></div>" +
+					//浮层区
+					"<div id='floatLayer'>  " +
+					"<div class='loading_title'>正在开门</div>" +
+					"<div class='loading_line'>  </div> " +
+					"<div style='font-size: 2em;text-align: center;margin: 20px auto;'><img src='/../assets/img/icon_cube.png' width='32px' style='margin-top: -4px'>&nbsp;&nbsp;" + msg + "号格子 </div>" +
+					"<div style='margin:0 auto;text-align: center'>" +
+					"<table style='margin: auto'><tr>" +
+					"<td><canvas id='canvas' width='50px' height='40px'></canvas></td>" +
+					"<td><div class='loading_text'>正在开门...</div></td>" +
+					"</tr></table>" +
+					"</div>" +
+					"</div>"
+				);
+				var $fullScreen = $('#fullScreen');
+				var $floatLayer = $('#floatLayer');
+				$floatLayer.css({
+					//设置弹出层距离左边的位置
+					left: ($("#fullScreen").width() - $floatLayer.width()) / 2 + "px",
+					//设置弹出层距离上面的位置
+					top: ($(window).height() - $floatLayer.height()) / 2 + "px",
+				});
+				drawRing();
+			};
+		</script>
+
+		<style>
+			.weui-icon-delete:before {
+				content: "\EA0D";
+			}
+		</style>
+
+		<!--是否使用积分抵扣 0：不使用  1：使用-->
+		<input type="hidden" value="0" id="useScore">
+
+	</body>
+
+</html>

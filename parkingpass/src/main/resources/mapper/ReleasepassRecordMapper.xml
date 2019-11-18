@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.parkingpass.mapper.ReleasePassRecordMapper">
+    <select id="getAllReleasepassRecordByUserId" parameterType="User" resultType="ReleasepassRecord">
+        SELECT rr.rpid,rr.quantity,rt.release_time as rid,rr.applytime,rr.employtime,rr.status,rr.uid,rr.desc
+        FROM releasepass_record rr,release_type rt WHERE rr.rid=rt.rid and  rr.uid=#{uid} ORDER BY rr.`applytime` DESC
+    </select>
+
+    <insert id="addReleasepassRecord" parameterType="ReleasepassRecord">
+        INSERT  INTO releasepass_record(quantity,rid,applytime,employtime,uid)
+        VALUE (#{quantity},#{rid},#{applytime},#{employtime},#{uid})
+    </insert>
+
+    <select id="change_apply_status" parameterType="int">
+        update release_pase_record set status=#{status}
+    </select>
+
+    <select id="get_already_apply_release" parameterType="Long" resultType="ReleasepassRecord">
+        select * from release_pase_record where status=#{status}
+    </select>
+</mapper>

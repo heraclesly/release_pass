@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.parkingpass.mapper.AccessRecordsServiceMapper">
+    <select id="insert_message_ToRecord" parameterType="AccessRecords">
+        insert into access_records(eid,licence_plate_number,release_pase_coding,enter_time,exit_time,gid)
+        values(#{eid},#{licence_plate_number},#{release_pase_coding},#{enter_time},#{exit_time},#{gid})
+    </select>
+    <select id="get_records_message" parameterType="Long" resultType="AccessRecords">
+        select  distinct a.*,c.company_name from ((access_records a join user u on a.gid=#{gid} and u.gid=#{gid}) join company c on u.eid=c.eid)
+    </select>
+
+</mapper>

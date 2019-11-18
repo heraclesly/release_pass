@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" href="../assets/css/weui.css"/>
+    <link rel="stylesheet" href="../assets/css/weuix.css"/>
+	<link rel="stylesheet" href="../assets/css/style-1.css" />
+    <script src="../assets/js/zepto.min.js"></script>
+    <script src="../assets/js/zepto.weui.js"></script>
+     <script src="../js/picker.city.js"></script>
+     
+</head>
+
+<body ontouchstart>
+	<div>
+	<header class="jq22-navBar jq22-navBar-fixed b-line">
+				<a href="#" class="jq22-navBar-item">
+					<i class="icon icon-return"></i>
+				</a>
+				<div class="jq22-center">
+					<label for="" class="weui-label">销量详情</label>
+				</div>
+			</header></div>
+<div class="container">
+    <div class="page-bd-15">
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                	<i class="weui-icon-search"></i>
+                	<label for="name" class="weui-label">选择时间</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="name" type="text" value="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    $("#name").picker({
+        title: "日期",
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['2019年', '2018年']
+            },
+            {
+                textAlign: 'center',
+                values: ['1月','2月','3月']
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

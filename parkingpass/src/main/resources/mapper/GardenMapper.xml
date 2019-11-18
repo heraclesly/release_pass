@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.parkingpass.mapper.UserMapper">
+
+    <select id="getGardenMessage" parameterType="Garden" resultType="Garden">
+        SELECT * FROM  Garden WHERE gid=#{garden_number}
+    </select>
+    <select id="getCompanyMessage" parameterType="Company" resultType="Company">
+        SELECT * FROM  Company WHERE gid=#{phone_call}
+    </select>
+    <insert id="addGardenUser" parameterType="Garden" useGeneratedKeys="true" keyProperty="gid">
+        INSERT INTO Garden(garden_number,garden_desc,garden_name) VALUE (#{garden_number},#{garden_desc},#{garden_name})
+    </insert>
+    <insert id="addCompany" parameterType="Company" useGeneratedKeys="true" keyProperty="eid">
+        INSERT INTO Company(company_name,phone_call,address) VALUE (#{company_name},#{phone_call},#{address})
+    </insert>
+
+
+</mapper>

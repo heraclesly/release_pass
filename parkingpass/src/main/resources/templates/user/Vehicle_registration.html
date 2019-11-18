@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<!--声明文档兼容模式，表示使用IE浏览器的最新模式-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!--设置视口的宽度(值为设备的理想宽度)，页面初始缩放值<理想宽度/可见宽度>-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随		其后！ -->
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+
+		<meta http-equiv="Content-type" content="text/html?charset=UTF-8">
+
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.0/weui.min.css">
+		<title>车辆登记</title>
+
+		<!-- 引入Bootstrap核心样式文件 -->
+		<link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.0/weui.min.css">
+
+		<!-- 引入jQuery核心js文件 -->
+		<script src="../assets/js/jquery.js"></script>
+		<!-- 引入BootStrap核心js文件 -->
+		<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+		<style type="text/css">
+			body {
+				background-color: #ffffff;
+			}
+			
+			.hide {
+				display: none;
+			}
+			
+			.f-ui-content {
+				padding-top: 1.375em;
+				margin: 0 auto;
+				width: 95%;
+			}
+			
+			.f-left {
+				float: left;
+				font-size: 1em;
+				color: #333333;
+			}
+			
+			.f-right {
+				float: right;
+			}
+			
+			.f-right span {
+				font-size: 0.9em;
+				color: #ff793f;
+			}
+			
+			.f-footer {
+				position: absolute;
+				left: 0;
+				bottom: 0.8125em;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.f-input-content {
+				margin-top: 1.375em;
+				width: 100%;
+				height: 3.4375em;
+				border: 1px solid #e3e4e5;
+				display: flex;
+				display: -webkit-flex;
+				align-items: center;
+				-webkit-align-items: center;
+			}
+			
+			.f-car-province {
+				text-align: center;
+				width: 20%;
+				margin: 10px 0px;
+				border-right: 1px solid #e3e4e5;
+				font-size: 1.375em;
+				color: #ff793f;
+			}
+			
+			.f-carno-content {
+				width: 80%;
+				text-align: center;
+			}
+			
+			.f-input-content input {
+				border: none;
+				background: transparent;
+				font-size: 1em;
+				color: #000000;
+				width: 90%;
+				padding-left: 1.375em;
+			}
+			
+			.f-input-content input[id=specialCarNo] {
+				padding: 10px 5px;
+			}
+			
+			.f-ui-button {
+				-webkit-border-radius: 6px;
+				-moz-border-radius: 6px;
+				border-radius: 6px;
+				;
+				margin-top: 1.5em;
+				/*padding: 5px 0;*/
+				background-color: #04be02;
+				width: 100%;
+				height: 2.5em;
+				font-size: 1.125em;
+				text-align: center;
+				color: #FFFFFF;
+				display: flex;
+				display: -webkit-flex;
+				justify-content: center;
+				-webkit-justify-content: center;
+				align-items: center;
+				-webkit-align-items: center;
+			}
+			
+			.f-ui-button:active {
+				background-color: #e46128;
+			}
+		</style>
+
+		<style type="text/css">
+			.h-content {
+				width: 100%;
+				display: flex;
+				display: -webkit-flex;
+				flex-wrap: wrap;
+				-webkit-flex-wrap: wrap;
+			}
+			
+			.h-content div {
+				flex: 0 0 33%;
+				-webkit-flex: 0 0 33%;
+				display: flex;
+				display: -webkit-flex;
+				align-items: center;
+				-webkit-align-items: center;
+				margin-top: 0.625em;
+			}
+			
+			.h-content div:nth-child(1),
+			.h-content div:nth-child(2),
+			.h-content div:nth-child(3) {
+				margin-top: 0.9375em;
+			}
+			
+			.h-content div:nth-child(3n+1) {
+				justify-content: flex-start;
+				-webkit-justify-content: flex-start;
+			}
+			
+			.h-content div:nth-child(3n+2) {
+				justify-content: center;
+				-webkit-justify-content: center;
+			}
+			
+			.h-content div:nth-child(3n+3) {
+				justify-content: flex-end;
+				-webkit-justify-content: flex-end;
+			}
+			
+			.h-content div span {
+				width: 95%;
+				text-align: center;
+				color: #606060;
+				;
+				background-color: #f6f6f6;
+				border-radius: 5px;
+				padding: 5px 0px;
+				overflow: hidden;
+				-ms-text-overflow: ellipsis;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.h-content div span:active {
+				background-color: #e46128;
+			}
+		</style>
+
+		<style type="text/css">
+			.pop-overlay {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0;
+				top: 0;
+				z-index: 1000;
+				background-color: rgba(51, 51, 51, 0.3);
+			}
+			
+			.pop-hide {
+				-webkit-transition: all .3s;
+				-moz-transition: all .3s;
+				-ms-transition: all .3s;
+				-o-transition: all .3s;
+				transition: all .3s;
+				-webkit-transform: translateY(100%);
+				-moz-transform: translateY(100%);
+				-ms-transform: translateY(100%);
+				-o-transform: translateY(100%);
+				transform: translateY(100%);
+			}
+			
+			.pop-show {
+				-webkit-transition: all .3s;
+				-moz-transition: all .3s;
+				-ms-transition: all .3s;
+				-o-transition: all .3s;
+				transition: all .3s;
+				-webkit-transform: translateY(0);
+				-moz-transform: translateY(0);
+				-ms-transform: translateY(0);
+				-o-transform: translateY(0);
+				transform: translateY(0);
+			}
+			
+			.pop-content {
+				width: 100%;
+				min-height: 10%;
+				max-height: 50%;
+				background-color: #ffffff;
+				position: fixed;
+				left: 0;
+				bottom: 0;
+			}
+			
+			.pop-header {
+				width: 100%;
+				text-align: center;
+				height: 3.125em;
+				display: flex;
+				display: -webkit-flex;
+				justify-content: center;
+				-webkit-justify-content: center;
+				align-items: center;
+				-webkit-align-items: center;
+			}
+			
+			.pop-header .pop-title {
+				color: #ff793f;
+				font-size: 1.125em;
+			}
+			
+			.pop-province-items {
+				position: relative;
+				width: 100%;
+				display: flex;
+				display: -webkit-flex;
+			}
+			
+			.pop-province-items:before {
+				content: '';
+				border-top: 1px solid #e3e4e5;
+				width: 100%;
+				height: 1px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				-webkit-transform: scaleY(0.5);
+				-moz-transform: scaleY(0.5);
+				-ms-transform: scaleY(0.5);
+				-o-transform: scaleY(0.5);
+				transform: scaleY(0.5);
+				display: flex;
+				display: -webkit-flex;
+			}
+			
+			.pop-province-items .item {
+				font-size: 1.125em;
+				color: #333333;
+				flex: 0 0 12%;
+				-webkit-flex: 0 0 12.3%;
+				display: flex;
+				display: -webkit-flex;
+				justify-content: center;
+				-webkit-justify-content: center;
+				align-items: center;
+				-webkit-align-items: center;
+				border-right: 1px solid #e5e5e5;
+			}
+			
+			.pop-province-items .item:last-child {
+				border-right: none;
+			}
+			
+			.pop-province-items .item:nth-child(8n) {
+				border-right: none;
+			}
+			
+			.footer {
+				width: 100%;
+				height: 3.65em;
+				background: #E5E7E5;
+				color: #323232;
+				font-size: 0.875em;
+				margin: auto;
+				text-align: center;
+				position: fixed;
+				bottom: 0;
+			}
+		</style>
+		<style id="__WXWORK_INNER_SCROLLBAR_CSS">
+			::-webkit-scrollbar {
+				width: 12px !important;
+				height: 12px !important;
+			}
+			
+			::-webkit-scrollbar-track:vertical {}
+			
+			::-webkit-scrollbar-thumb:vertical {
+				background-color: rgba(136, 141, 152, 0.5) !important;
+				border-radius: 10px !important;
+				background-clip: content-box !important;
+				border: 2px solid transparent !important;
+			}
+			
+			::-webkit-scrollbar-track:horizontal {}
+			
+			::-webkit-scrollbar-thumb:horizontal {
+				background-color: rgba(136, 141, 152, 0.5) !important;
+				border-radius: 10px !important;
+				background-clip: content-box !important;
+				border: 2px solid transparent !important;
+			}
+			
+			::-webkit-resizer {
+				display: none !important;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class="page">
+
+			<div class="page__bd page__bd_spacing">
+				<div class="page">
+					<div class="weui-form">
+
+						<div class="weui-form__control-area">
+							<div class="weui-cells__group weui-cells__group_form">
+								<div class="f-ui-content">
+			<div>
+				<div class="f-left">请输入完整车牌号码</div>
+				<div class="f-right"><a href="/jsp/weChat/page/index.jsp"><span>返回功能主菜单</span></a></div>
+
+			</div>
+			<div style="clear: both;"></div>
+			<div id="carNo_normal" style="width: 100%;">
+				<div class="f-input-content">
+					<div class="f-car-province">
+						<span>
+                    
+                        
+                        粤
+                    
+                </span>
+					</div>
+					<div id="normal" class="f-carno-content">
+						<input id="carNumber" maxlength="8" onkeyup="toUpper(this)" value="" type="text" placeholder="请输入车牌号码">
+					</div>
+				</div>
+			</div>
+
+		</div>
+								<div class="weui-cells weui-cells_form">
+									
+									<div class="weui-cell">
+										<div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+										<div class="weui-cell__bd">
+											<input id="js_input" class="weui-input" placeholder="填写本人姓名" />
+										</div>
+									</div>
+									<div class="weui-cell">
+										<div class="weui-cell__hd"><label class="weui-label">联系电话</label></div>
+										<div class="weui-cell__bd">
+											<input id="js_input" class="weui-input" placeholder="填写绑定的电话号码" type="number" pattern="[0-9]*" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="weui-form__opr-area">
+							<a class="weui-btn weui-btn_primary weui-btn_disabled" href="javascript:" id="showTooltips">确定</a>
+						</div>
+
+						<div class="weui-form__extra-area">
+							<div class="weui-footer">
+								<p class="weui-footer__links">
+									<a href="javascript:void(0);" class="weui-footer__link">底部链接文本</a>
+								</p>
+								<p class="weui-footer__text">Copyright © 2008-2019 weui.io</p>
+							</div>
+						</div>
+					</div>
+					<div id="js_toast" style="display: none;">
+						<div class="weui-mask_transparent"></div>
+						<div class="weui-toast">
+							<i class="weui-icon-success-no-circle weui-icon_toast"></i>
+							<p class="weui-toast__content">已完成</p>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					$(function() {
+						var $toast = $('#js_toast');
+						var $input = $('#js_input');
+						$input.on('input', function() {
+							if ($input.val()) {
+								$('#showTooltips').removeClass('weui-btn_disabled');
+							} else {
+								$('#showTooltips').addClass('weui-btn_disabled');
+							}
+						});
+						$('#showTooltips').on('click', function() {
+							if ($(this).hasClass('weui-btn_disabled')) return;
+							// toptips的fixed, 如果有`animation`, `position: fixed`不生效
+							$('.page.cell').removeClass('slideIn');
+							$toast.fadeIn(100);
+							setTimeout(function() {
+								$toast.fadeOut(100);
+							}, 2000);
+						});
+					});
+				</script>
+
+			</div>
+		</div>
+		
+
+		<div class="pop-overlay pop-hide">
+			<div class="pop-content">
+				<div class="pop-header">
+					<div class="pop-title">请输入车牌归属地</div>
+					<div style="clear: both"></div>
+				</div>
+				<div class="pop-province-items">
+					<div class="item" data-value="京" style="height: 239.25px;">京</div>
+					<div class="item" data-value="津" style="height: 239.25px;">津</div>
+					<div class="item" data-value="冀" style="height: 239.25px;">冀</div>
+					<div class="item" data-value="晋" style="height: 239.25px;">晋</div>
+					<div class="item" data-value="蒙" style="height: 239.25px;">蒙</div>
+					<div class="item" data-value="辽" style="height: 239.25px;">辽</div>
+					<div class="item" data-value="吉" style="height: 239.25px;">吉</div>
+					<div class="item" data-value="黑" style="height: 239.25px;">黑</div>
+				</div>
+				<div class="pop-province-items">
+					<div class="item" data-value="沪" style="height: 239.25px;">沪</div>
+					<div class="item" data-value="苏" style="height: 239.25px;">苏</div>
+					<div class="item" data-value="浙" style="height: 239.25px;">浙</div>
+					<div class="item" data-value="皖" style="height: 239.25px;">皖</div>
+					<div class="item" data-value="闽" style="height: 239.25px;">闽</div>
+					<div class="item" data-value="赣" style="height: 239.25px;">赣</div>
+					<div class="item" data-value="鲁" style="height: 239.25px;">鲁</div>
+					<div class="item" data-value="豫" style="height: 239.25px;">豫</div>
+				</div>
+				<div class="pop-province-items">
+					<div class="item" data-value="鄂" style="height: 239.25px;">鄂</div>
+					<div class="item" data-value="湘" style="height: 239.25px;">湘</div>
+					<div class="item" data-value="粤" style="height: 239.25px;">粤</div>
+					<div class="item" data-value="桂" style="height: 239.25px;">桂</div>
+					<div class="item" data-value="琼" style="height: 239.25px;">琼</div>
+					<div class="item" data-value="渝" style="height: 239.25px;">渝</div>
+					<div class="item" data-value="川" style="height: 239.25px;">川</div>
+					<div class="item" data-value="贵" style="height: 239.25px;">贵</div>
+				</div>
+				<div class="pop-province-items">
+					<div class="item" data-value="云" style="height: 239.25px;">云</div>
+					<div class="item" data-value="藏" style="height: 239.25px;">藏</div>
+					<div class="item" data-value="陕" style="height: 239.25px;">陕</div>
+					<div class="item" data-value="甘" style="height: 239.25px;">甘</div>
+					<div class="item" data-value="青" style="height: 239.25px;">青</div>
+					<div class="item" data-value="宁" style="height: 239.25px;">宁</div>
+					<div class="item" data-value="新" style="height: 239.25px;">新</div>
+					<div class="item" data-value="使" style="height: 239.25px;">使</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			//中文正则表达式
+			var chineseRegex = new RegExp("[\u4e00-\u9fa5]");
+			var numberCharRegex = new RegExp("[A-Za-z_0-9]");
+			var spaceRegex = new RegExp("\\s");
+
+			function toUpper(obj) {
+				var value = $.trim($(obj).val());
+				$(obj).val(value);
+				// $(obj).val(value.toUpperCase());
+			}
+
+			function isVehicleNumber(num) {
+				var exp = '^[\u4e00-\u9fa5]{1}[A-Za-z]{1}[A-Za-z_0-9]{5}$';
+				return new RegExp(exp).test(num);
+			}
+			$(document).on("click", ".h-content div span", function() {
+				var value = $.trim($(this).html());
+				var first = value.substr(0, 1);
+				$(".f-car-province span").html(first);
+				$("#carNumber").val(value.substr(1, value.length - 1));
+			});
+		</script>
+
+		<script type="text/javascript">
+			$(function() {
+				FastClick.attach(document.body);
+				$(".pop-province-items div").css("height", $("body").innerWidth() / 8);
+			});
+			$(document).on("click", ".pop-overlay", function() {
+				$(".pop-overlay").removeClass("pop-show");
+			});
+			$(document).on("click", ".f-car-province", function() {
+				$(".pop-overlay").addClass("pop-show");
+			});
+			$(document).on("click", ".pop-header .pop-right", function() {
+				$(".pop-overlay").removeClass("pop-show");
+			});
+			$(document).on("click", ".pop-province-items div", function() {
+				if ('' != $.trim($(this).attr("data-value"))) {
+					$(".f-car-province span").html($(this).attr("data-value"));
+				}
+				$(".pop-overlay").removeClass("pop-show");
+			});
+			$(document).on("click", ".f-ui-button", function() {
+				var vehicleNumber = null;
+				var carNo = $.trim($("#carNumber").val().toUpperCase());
+				$("#carNumber").val(carNo);
+				if ($.trim(carNo).length == 0 || $.trim(carNo).length <= 5) {
+					$.alert("请输入正确的车牌号");
+					return;
+				}
+				if (carNo.indexOf("\u4f7f") >= 0) { //当有大使馆的车牌时，去掉第一个字
+					vehicleNumber = carNo;
+				} else {
+					vehicleNumber = $.trim($(".f-car-province span").html()) + carNo;
+				}
+				window.location.href = "/weChat/wcFareQuery/saveHistoryAndPay?openId=ooriU1Hze4qgjqbVf5TuAo9w54EQ&licenseNumber=" + vehicleNumber;
+			});
+			$(document).on("click", "#recycle", function() {
+				$.showLoading("请稍后...");
+				$.ajax({
+					url: '/weChat/wcFareQuery/delHistoryCar',
+					method: 'GET',
+					data: {
+						openId: 'ooriU1Hze4qgjqbVf5TuAo9w54EQ'
+					},
+					dataType: 'json',
+					success: function(res) {
+						$.hideLoading();
+						$(".h-content").empty();
+						$("#divHistory").css("display", "none");
+						/*   $.hideLoading();
+						  if (ret=="true"||res==true) {
+						      $(".h-content").empty();
+						      $("#divHistory").css("display", "none");
+						  } else {
+						      $.alert("操作失败");
+						  } */
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>
